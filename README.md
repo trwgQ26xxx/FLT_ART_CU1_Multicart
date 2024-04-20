@@ -2,6 +2,8 @@
 
 Multicart which replaces 8 FLT modules. 8 ROM sets stored in 4Mbit FLASH can be switched on the go.
 
+![Preview](PCB/PREVIEW.png)
+
 # Directories organization
 
 - **firmware** - MCU firmware, written in C
