@@ -42,14 +42,21 @@ enum DotStatus {DOT_ON = 1, DOT_OFF = 0};
 
 #define NUMBER_OF_BANKS	8
 
-//#define F_CPU			3600000						/* Hz*/
-//#define F_TIMER		(F_CPU / 12)				/* Hz */
-//#define KEYB_DELAY	(65536 / F_TIMER) * 1000	/* ms */
+#define F_CPU			3600000							/* Hz */
+#define F_TIMER			(F_CPU / 12)					/* Hz */
+#define KEYB_DELAY		100								/* ms */
+#define KEYB_DELAY_VAL	((KEYB_DELAY * F_TIMER) / 1000)	/* ticks */
+#define TIMER_VAL		(0xFFFF - KEYB_DELAY_VAL)		/* ticks */
+#define TIMER_RELOAD_H	((TIMER_VAL >> 8) & 0xFF)		/* ticks */
+#define TIMER_RELOAD_L	(TIMER_VAL & 0xFF)				/* ticks */
+
+/* With 3.6MHz CPU clock it would give 218ms delay maximum */
+//#define KEYB_DELAY_MAX		(0xFFFF / F_TIMER) * 1000	/* ms */
 
 enum KeyboardStatus { KEYBOARD_LOCKED = 2, KEYBOARD_WAITING_FOR_BUTTONS_TO_BE_RELEASED = 1, KEYBOARD_UNLOCKED = 0 };
 
 /* DIGITS: 1 - 8 */
-volatile unsigned char led_codes[NUMBER_OF_BANKS] = {0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00};
+volatile const unsigned char led_codes[NUMBER_OF_BANKS] = {0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00};
 
 volatile unsigned char keyboard_lock_status = KEYBOARD_LOCKED;
 volatile unsigned char current_bank = 0;
@@ -60,9 +67,8 @@ void Start_Timer1(void)
 	TR1 = 0;
 	
 	/* Clear timer */
-	/* With 3.6MHz CPU clock it would give 218ms delay */
-	TH1 = 0;
-	TL1 = 0;	
+	TH1 = TIMER_RELOAD_H;
+	TL1 = TIMER_RELOAD_L;	
 		
 	/* Clear flag */
 	TF1 = 0;
