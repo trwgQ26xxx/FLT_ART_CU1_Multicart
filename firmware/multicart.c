@@ -48,6 +48,9 @@ enum DotStatus {DOT_ON = 1, DOT_OFF = 0};
 
 enum KeyboardStatus { KEYBOARD_LOCKED = 2, KEYBOARD_WAITING_FOR_BUTTONS_TO_BE_RELEASED = 1, KEYBOARD_UNLOCKED = 0 };
 
+/* DIGITS: 1 - 8 */
+volatile unsigned char led_codes[NUMBER_OF_BANKS] = {0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00};
+
 volatile unsigned char keyboard_lock_status = KEYBOARD_LOCKED;
 volatile unsigned char current_bank = 0;
 
@@ -77,7 +80,7 @@ void Timer1_ISR(void) __interrupt(TF1_VECTOR)
 	TF1 = 0;
 	
 	/* Run FLT */
-	UPDATE_LED_DISPLAY(current_bank, DOT_OFF);
+	UPDATE_LED_DISPLAY(led_codes[current_bank], DOT_OFF);
 	RUN_FLT;
 	
 	/* Check if all keys are released */
@@ -103,7 +106,7 @@ void Switch_Bank(void)
 	
 	/* Switch bank */
 	HALT_FLT;
-	UPDATE_LED_DISPLAY(current_bank, DOT_ON);
+	UPDATE_LED_DISPLAY(led_codes[current_bank], DOT_ON);
 	CHANGE_MEM_BANK(current_bank);
 	
 	/* Start timer */
@@ -112,9 +115,6 @@ void Switch_Bank(void)
 
 void main(void)
 {
-	/* DIGITS: 1 - 8 */
-	unsigned char led_codes[NUMBER_OF_BANKS] = {0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00};
-
 	/* Set registers */
 	TCON = 0;							/* Clear flags */
 	TMOD = (0x1 << 4);					/* Timer 1 mode 1 (16-bit mode) */
