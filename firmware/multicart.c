@@ -28,8 +28,8 @@ P3.5 = NEXT_SW, P3.7 = RST_SW (BACK_SW)
 
 #define CHANGE_MEM_BANK(bank)			do{ P3 &= 0xF0;	P3 |= (bank & 0x0F);		}while(0)
 
-#define HALT_FLT						do{ P3_4 = 0;								}while(0)
-#define RUN_FLT							do{ P3_4 = 1;								}while(0)
+#define HALT_FLT						do{ P3_4 = 1;								}while(0)
+#define RUN_FLT							do{ P3_4 = 0;								}while(0)
 
 #define INIT_KEYS						do{ P3_5 = 1; P3_7 = 1;						}while(0)
 #define NEXT_KEY_IS_PRESSED				(!(P3_5))
@@ -44,7 +44,7 @@ enum DotStatus {DOT_ON = 1, DOT_OFF = 0};
 
 #define F_CPU			3600000							/* Hz */
 #define F_TIMER			(F_CPU / 12)					/* Hz */
-#define KEYB_DELAY		100								/* ms */
+#define KEYB_DELAY		210								/* ms */
 #define KEYB_DELAY_VAL	((KEYB_DELAY * F_TIMER) / 1000)	/* ticks */
 #define TIMER_VAL		(0xFFFF - KEYB_DELAY_VAL)		/* ticks */
 #define TIMER_RELOAD_H	((TIMER_VAL >> 8) & 0xFF)		/* ticks */
