@@ -38,7 +38,7 @@ P3.5 = NEXT_SW, P3.7 = RST_SW (BACK_SW)
 
 enum DotStatus {DOT_ON = 1, DOT_OFF = 0};
 #define DISABLE_LED_DISPLAY				do{ P1 = 0xFF;								}while(0)
-#define UPDATE_LED_DISPLAY(digit, dot)	do{ P1 = (dot) ? (digit) : (digit & 0x80);	}while(0)
+#define UPDATE_LED_DISPLAY(digit, dot)	do{ P1 = (dot) ? (digit) : (digit | 0x80);	}while(0)
 
 #define NUMBER_OF_BANKS	8
 
