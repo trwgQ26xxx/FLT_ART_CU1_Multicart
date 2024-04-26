@@ -51,7 +51,11 @@ enum DotStatus {DOT_ON = 1, DOT_OFF = 0};
 #define TIMER_RELOAD_L	(TIMER_VAL & 0xFF)				/* ticks */
 
 /* With 3.6MHz CPU clock it would give 218ms delay maximum */
-//#define KEYB_DELAY_MAX		(0xFFFF / F_TIMER) * 1000	/* ms */
+#define KEYB_DELAY_MAX	((0xFFFF * 1000) / F_TIMER) 	/* ms */
+
+#if (KEYB_DELAY > KEYB_DELAY_MAX)
+	#error "Set keyboard delay is larger than maximum"
+#endif
 
 enum KeyboardStatus { KEYBOARD_LOCKED = 2, KEYBOARD_WAITING_FOR_BUTTONS_TO_BE_RELEASED = 1, KEYBOARD_UNLOCKED = 0 };
 
