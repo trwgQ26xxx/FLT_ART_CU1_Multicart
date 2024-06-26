@@ -20,7 +20,7 @@ The FLASH memories used, of 39SF040 type (or equivalent), have a capacity of 512
 
 The FLASH memory contents can be changed according to the following principles.
 
-ROM index | Offset
+**ROM index** | **Base offset**
 :---: | :---:
 1 | 0x00000
 2 | 0x10000
@@ -33,7 +33,7 @@ ROM index | Offset
 
 Let's assume we want to load the module at index 3, for which the base offset is 0x20000.
 
-ROM | SIZE | The ROM given is PRESENT in the module being loaded at index 3 | The ROM given is NOT PRESENT in the module being loaded at index 3
+**ROM** | **SIZE** | **The ROM given is PRESENT in the module being loaded at index 3** | **The ROM given is NOT PRESENT in the module being loaded at index 3**
 :---: | :---: | :---: | :---:
 A | 8kB | Load the content of ROM A into FLASH memory A addresses 0x20000-0x21FFF.Fill addresses 0x22000-0x2FFFF of FLASH memory A with 0xFF. | Fill addresses 0x20000-0x2FFFF of FLASH memory A with 0xFF.
 B | 32kB | Load the content of ROM B into FLASH memory B addresses 0x28000-0x2FFFF. Fill addresses 0x20000-0x27FFF of FLASH memory B with 0xFF. | ROM B is always present.
