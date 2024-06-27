@@ -2,7 +2,8 @@
 
 Multicart which replaces 8 FLT modules. 8 ROM sets stored in 512kB (4Mbit) FLASH can be switched on the go.
 
-![Preview](PCB/PREVIEW.png)
+![Top](PCB/TOP.jpg)
+![Bottom](PCB/BOTTOM.jpg)
 
 # Directories organization
 
@@ -43,3 +44,11 @@ C | 64kB | Load the content of ROM C into FLASH memory C addresses 0x20000-0x2FF
 
 
 It should be noted here that the utilization of FLASH memory A is at most 12.5%, as only 8kB of each 64kB bank is utilized. However, I opted for this solution to simplify the process of preparing Flash memory content, given the use of identical offsets.
+
+# Notes
+
+- Only either U1 (TO92) or U3 (SOT23) can be mounted.
+
+- 0.28" LED displays come in two variants. The first variant with common pins 1 and 6, the second variant with common pins 3 and 8. **A display with common pins 1 and 6 should be used in the project**.
+
+![Displays_diff](PCB/DISPLAYS_DIFF.jpg)
