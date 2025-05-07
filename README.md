@@ -25,6 +25,7 @@ Multicart which replaces 8 FLT modules. 8 ROM sets stored in 512kB (4Mbit) FLASH
 # Directories organization
 
 - **firmware** - AT89C2015 MCU firmware, written in C. Compiled with SDCC version 4.4.0. Can be ported to any 20-pin MCU.
+- **merge** - A script that automatically merges up to 8 modules into a single package, loadable onto a multicart.
 - **PCB** - PCB project, prepared in KiCad version 8.0.1.
 - **DS** - data sheets of used components
 
