@@ -19,6 +19,7 @@ names = ["M1B-IN",
 #Constants
 FULL_ROMBC_SIZE = 64 * 1024
 HALF_ROMBC_SIZE = 32 * 1024
+ROMA_SIZE = 8 * 1024
 PADDING_SIZE = FULL_ROMBC_SIZE
 ROMS_NUM = 8
 ROMS = ["A", "B", "C"];
@@ -64,9 +65,14 @@ for R in range(len(ROMS)):
                     chunk = chunk_read;
                 elif chunk_size == HALF_ROMBC_SIZE: #32kB, OK
                     #Pad with 32k
-                    half_chunk = bytearray(b'\xFF' * HALF_ROMBC_SIZE)
-                    chunk.extend(half_chunk)
+                    pad_chunk = bytearray(b'\xFF' * HALF_ROMBC_SIZE)
+                    chunk.extend(pad_chunk)
                     chunk.extend(chunk_read)
+                elif chunk_size == ROMA_SIZE:       #8kB, OK
+                    #Pad with 56k (64k - 8k)
+                    pad_chunk = bytearray(b'\xFF' * (FULL_ROMBC_SIZE - ROMA_SIZE))
+                    chunk.extend(chunk_read)
+                    chunk.extend(pad_chunk)
                 else:                               #Wrong size, fail
                     #Wrong size. Stop
                     print("Wrong ROM size! Quitting...")
