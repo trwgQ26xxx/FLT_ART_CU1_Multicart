@@ -1,2 +1,4 @@
 /PCB/GERBERS/
 /PCB/*backups/
+
+/firmware/tiny806_version/AVR_GCC/*
