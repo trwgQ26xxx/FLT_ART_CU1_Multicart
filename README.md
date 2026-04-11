@@ -2,13 +2,15 @@
 
 A multicart ROM module that replaces eight standard FLT modules. It contains eight ROM sets stored in a 512kB (4Mbit) flash memory, which can be switched on the fly.
 
-Two variants are implemented: one using an Atmel AT89C2051 MCU (revisions A and B), and another based on a Microchip ATtiny806 (revision C).
+Two variants are implemented: one using an Atmel AT89C2051 MCU (revisions A - green and B - blue), and another based on a Microchip ATtiny806 (revision C - yellow).
+
+![REV_C_ATTINY806_TOP](PCB/REV_C_ATTINY806_TOP.jpg)
+![REV_C_ATTINY806_BOTTOM](PCB/REV_C_ATTINY806_BOTTOM.jpg)
 
 ![REV_B_AT89C2051](PCB/REV_B_AT89C2051.jpg)
-![REV_C_ATTINY806](PCB/REV_C_ATTINY806.jpg)
 
-![REV_A_TOP](PCB/REV_A_TOP.jpg)
-![REV_A_BOTTOM](PCB/REV_A_BOTTOM.jpg)
+![REV_A_AT89C2051_TOP](PCB/REV_A_AT89C2051_TOP.jpg)
+![REV_A_AT89C2051_BOTTOM](PCB/REV_A_AT89C2051_BOTTOM.jpg)
 
 # Disclaimer
 
